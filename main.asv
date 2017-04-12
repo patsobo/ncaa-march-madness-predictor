@@ -1,0 +1,9 @@
+% relative directory path to data
+data = 'data/';
+
+% detailed results of games played during the season
+season = csvread(data + 'RegularSeasonDetailedResults.csv');
+
+
+teams = csvread(data + 'Teams.csv');
+seeds = csvread(data + 'TourneySeeds.csv');
