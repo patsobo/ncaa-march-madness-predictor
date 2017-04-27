@@ -26,7 +26,7 @@ seeds = seeds(rows, :);
 % Creating our simulation of the bracket
 conf_size = 16;
 
-% keep running rounds until you're left with one champion
+% keep running rounds until you''re left with one champion
 while (size(seeds, 1) > 1)
     losing_teams = [];
     for u_index = 1:size(seeds, 1)

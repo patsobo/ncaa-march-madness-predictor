@@ -5,5 +5,9 @@ function [ u_score, l_score ] = match( u_team, l_team )
     u_score = 10;
     l_score = 20;
 
+<<<<<<< HEAD
 end
 
+=======
+end
+>>>>>>> e43b8f65944c71400011aebc2d064d1e61fe80c2
