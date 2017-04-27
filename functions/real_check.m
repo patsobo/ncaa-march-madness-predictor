@@ -5,9 +5,9 @@ function [ matching ] = real_check( sim, actual, num_matches )
 
     matching = 0;
     for i = 1:num_matches
-        disp(sim{i, 3});
-        disp(actual(i));
-        disp('----------------------------');
+        %disp(sim{i, 3});
+        %disp(actual(i));
+        %disp('----------------------------');
         if (sim{i, 3} == actual(i))
             matching = matching + 1;
         end

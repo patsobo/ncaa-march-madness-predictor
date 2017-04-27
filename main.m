@@ -53,7 +53,7 @@ rebounds
 %}
 
 % keep running rounds until you''re left with one champion
-while (size(seeds, 1) > 1)
+while (size(seeds, 1) > 4)
     losing_teams = [];
     for u_index = 1:size(seeds, 1)
         % get the teams for the match-up
@@ -99,11 +99,20 @@ while (size(seeds, 1) > 1)
         conf_size = 4;
         round_matches = conf_size / 2;
     end
+    
+    if (size(seeds, 1) == 4)
+        disp('FINAL FOUR');
+        %disp('------------------------------');        
+        for k = 1:size(seeds, 1)
+            disp(teams{seeds{k, 3} - 1100, 2}{1});
+        end
+        disp('------------------------------');
+    end
 end
 
 % print out accuracy
 disp('Accuracy: ');
-disp(total_correct / total_matches);
+disp(total_correct / 63);
 disp(total_matches);
 disp('------------------');
 

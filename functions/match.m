@@ -3,7 +3,7 @@ function [ u_score, l_score ] = match( u_team, l_team, teams, adv_season )
 %   Given two team indexes, gets data for those teams and creates a "score"
 %   for each of the teams, the lower score winning the matchup.
     u_score = 0;
-    l_score = 0;
+    l_score = 1;
     
     % our hand-picked categories
     categories = ['defense', 'ppg', 'reb', 'fg', '3pt', 'ft', 'ftm', '3pm', 'wl', 'oreb', 'to'];
@@ -16,8 +16,8 @@ function [ u_score, l_score ] = match( u_team, l_team, teams, adv_season )
     u_team_name = teams{u_team - 1100, 2}{1};
     l_team_name = teams{l_team - 1100, 2}{1};
     
-    disp(u_team_name);
-    disp(l_team_name);
+    %disp(u_team_name);
+    %disp(l_team_name);
     
     index = find(strcmp(u_team_name, adv_season{:, 2}));
     u_stats = adv_season(index, :);
@@ -25,8 +25,8 @@ function [ u_score, l_score ] = match( u_team, l_team, teams, adv_season )
     l_stats = adv_season(index, :);
     
     % vals
-    u_score = custom_algorithm(u_stats);
-    l_score = custom_algorithm(l_stats);
+    %u_score = custom_algorithm(u_stats);
+    %l_score = custom_algorithm(l_stats);
     
     %l_score = str2double(u_stats{1, 8}{1});
     %u_score = str2double(l_stats{1, 8}{1});

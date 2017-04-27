@@ -8,7 +8,7 @@ function [ val ] = custom_algorithm( table )
     ppg = n(table, 15) / n(table, 3) + 5*sos;
     srs = n(table, 8);
     
-    val = def + to - wl - ppg;
+    val = .25*def + .2*to - .16*wl - .16*ppg - .5*srs;
 
 end
 
