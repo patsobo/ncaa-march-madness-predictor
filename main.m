@@ -20,9 +20,48 @@ teams = readtable('Teams.csv');
 
 % the seed ranking of each team for the 2017 NCAA tournament.
 seeds = readtable('TourneySeeds.csv');
+rows = seeds.Season == 2017;
+seeds = seeds(rows, :);
 
+% Creating our simulation of the bracket
+conf_size = 16;
 
-% Building our algorithm now
+% keep running rounds until you''re left with one champion
+while (size(seeds, 1) > 1)
+    losing_teams = [];
+    for u_index = 1:size(seeds, 1)
+        % get the teams for the match-up
+        u_seed = mod(u_index, conf_size);
+        % adjust for error in mod calculation
+        if (u_seed == 0)
+            u_seed = conf_size;
+        end
+        l_seed = conf_size - u_seed + 1;
+
+        % only execute algorithm for top half of teams as upper seeds
+        if (l_seed > u_seed)
+            l_index = l_seed - u_seed + u_index;
+            u_team = seeds.Team(u_index);
+            l_team = seeds.Team(l_index);
+
+            % simulate a match, get the scores of each team
+            % lower score wins
+            [u_score, l_score] = match(u_team, l_team);
+
+            % higher seeded team won
+            if (u_score <= l_score)
+                losing_teams = [losing_teams l_index];
+            else
+                losing_teams = [losing_teams u_index];
+            end
+        end
+    end
+    seeds(losing_teams,:) = [];
+    conf_size = conf_size / 2;
+    if (conf_size <= 1)
+        conf_size = 4;
+    end
+end
 
 % our hand-picked categories
 categories = ['defense', 'ppg', 'reb', 'fg', '3pt', 'ft', 'ftm', '3pm', 'wl', 'oreb', 'to'];
@@ -36,10 +75,3 @@ for i = 1:3
     random = rand;
     slice = 1/7;
 end
-
-% run through each category and determine a winner, add to a total score
-l_score = 0;
-r_score = 0;
-
-% determine winner
-winner = 'UNC';
