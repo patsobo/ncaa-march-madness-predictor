@@ -53,7 +53,7 @@ rebounds
 %}
 
 % keep running rounds until you''re left with one champion
-while (size(seeds, 1) > 2)
+while (size(seeds, 1) > 1)
     losing_teams = [];
     for u_index = 1:size(seeds, 1)
         % get the teams for the match-up

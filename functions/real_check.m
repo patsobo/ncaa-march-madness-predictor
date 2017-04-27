@@ -5,7 +5,6 @@ function [ matching ] = real_check( sim, actual, num_matches )
 
     matching = 0;
     for i = 1:num_matches
-        i
         disp(sim{i, 3});
         disp(actual(i));
         disp('----------------------------');
