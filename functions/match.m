@@ -2,9 +2,7 @@ function [ u_score, l_score ] = match( u_team, l_team, teams, adv_season )
 %MATCH Simulates a match between the two given teams.
 %   Given two team indexes, gets data for those teams and creates a "score"
 %   for each of the teams, the lower score winning the matchup.
-    u_score = 0;
-    l_score = 1;
-    
+   
     % our hand-picked categories
     categories = ['defense', 'ppg', 'reb', 'fg', '3pt', 'ft', 'ftm', '3pm', 'wl', 'oreb', 'to'];
     pmf = [.25, .15, .08, .08, .08, .08, .08, .08, .16, .08, .20];
@@ -24,11 +22,16 @@ function [ u_score, l_score ] = match( u_team, l_team, teams, adv_season )
     index = find(strcmp(l_team_name, adv_season{:, 2}));
     l_stats = adv_season(index, :);
     
-    % vals
-    %u_score = custom_algorithm(u_stats);
-    %l_score = custom_algorithm(l_stats);
-    
+    % calculate choosing the highest seed
+    u_score = 0;
+    l_score = 1;
+   
+    % calculate based on one metric
     %l_score = str2double(u_stats{1, 8}{1});
     %u_score = str2double(l_stats{1, 8}{1});
+    
+    % calculate using custom metrics
+    u_score = custom_algorithm(u_stats);
+    l_score = custom_algorithm(l_stats);
     
 end

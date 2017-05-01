@@ -1,6 +1,7 @@
 function [ val ] = custom_algorithm( table )
-%CUSTOM_ALGORITHM Summary of this function goes here
-%   Detailed explanation goes here
+%CUSTOM_ALGORITHM Our custom metrics for calculating a team's value.
+%   This function, given a table of statistics for a certain team,
+%   determines the "strength" of that team through our calculations.
     sos = n(table, 8);
     def = n(table, 16) / n(table, 3) - 3*sos;
     to = n(table, 33) - 2*sos;

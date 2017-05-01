@@ -53,7 +53,7 @@ rebounds
 %}
 
 % keep running rounds until you''re left with one champion
-while (size(seeds, 1) > 4)
+while (size(seeds, 1) > 1)
     losing_teams = [];
     for u_index = 1:size(seeds, 1)
         % get the teams for the match-up
@@ -84,11 +84,11 @@ while (size(seeds, 1) > 4)
     end
     
     % calculate how accurate this round was
+    % and update variables for next round
     seeds(losing_teams, :) = [];    
     matching = real_check(seeds, real_results{current_round}, round_matches);
     total_correct = total_correct + matching;
     current_round = current_round + 1;
-    
     conf_size = conf_size / 2;
     round_matches = round_matches / 2;
     total_matches = total_matches + round_matches;
@@ -100,6 +100,7 @@ while (size(seeds, 1) > 4)
         round_matches = conf_size / 2;
     end
     
+    % display the final participants
     if (size(seeds, 1) == 4)
         disp('FINAL FOUR');
         %disp('------------------------------');        
@@ -111,13 +112,16 @@ while (size(seeds, 1) > 4)
 end
 
 % print out accuracy
+total_matches = total_matches - .5;
 disp('Accuracy: ');
-disp(total_correct / 63);
+disp(total_correct / total_matches);
 disp(total_matches);
 disp('------------------');
 
+%{
 % add three random categories to the algorithm
 for i = 1:3
     random = rand;
     slice = 1/7;
 end
+%}
