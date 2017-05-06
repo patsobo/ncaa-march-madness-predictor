@@ -60,14 +60,14 @@ weights_optimized = weights;%zeros(length(weights), 1);
 data_plot = [];
 for i = 1:length(weights_optimized)
     best_accuracy = 0;
-    for j=linspace(0, 1, 100)
+    for j=linspace(0, 2, 100)
         weights_optimized(i) = j;
         accuracy = run_tournament(seeds, teams, adv_season, weights_optimized, real_results, 0);
         if (accuracy > best_accuracy)
             %disp(weights_optimized(i));
             disp(accuracy);
             data_plot = [data_plot accuracy];
-            weights(i) = weights_optimized(i);
+            weights(i) = weights_optimized(i) / 2;
             best_accuracy = accuracy;
         end
     end
