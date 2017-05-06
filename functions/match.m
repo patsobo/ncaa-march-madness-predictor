@@ -1,4 +1,4 @@
-function [ u_score, l_score ] = match( u_team, l_team, teams, adv_season )
+function [ u_score, l_score ] = match( u_team, l_team, teams, adv_season, weights, random )
 %MATCH Simulates a match between the two given teams.
 %   Given two team indexes, gets data for those teams and creates a "score"
 %   for each of the teams, the lower score winning the matchup.
@@ -31,7 +31,7 @@ function [ u_score, l_score ] = match( u_team, l_team, teams, adv_season )
     %u_score = str2double(l_stats{1, 8}{1});
     
     % calculate using custom metrics
-    u_score = custom_algorithm(u_stats);
-    l_score = custom_algorithm(l_stats);
+    u_score = custom_algorithm(u_stats, weights, random);
+    l_score = custom_algorithm(l_stats, weights, random);
     
 end

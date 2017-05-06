@@ -1,4 +1,4 @@
-function [ val ] = custom_algorithm( table )
+function [ val ] = custom_algorithm( table, weights, random )
 %CUSTOM_ALGORITHM Our custom metrics for calculating a team's value.
 %   This function, given a table of statistics for a certain team,
 %   determines the "strength" of that team through our calculations.
@@ -9,7 +9,7 @@ function [ val ] = custom_algorithm( table )
     ppg = n(table, 15) / n(table, 3) + 5*sos;
     srs = n(table, 8);
     
-    val = .25*def + .2*to - .16*wl - .16*ppg - .5*srs;
-
+    val = weights(1)*def + weights(2)*to - weights(3)*wl - weights(4)*ppg - weights(5)*srs + (rand(1) * random);
+    %val
 end
 
